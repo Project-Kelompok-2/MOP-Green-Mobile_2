@@ -137,7 +137,7 @@ class _selamatdatangState extends State<selamatdatang> {
                                                 labelText: "Nama Depan",
                                               )),
                                               const SizedBox(
-                                                height: 20,
+                                                height: 10,
                                               ),
 
                                               TextField(
@@ -150,7 +150,7 @@ class _selamatdatangState extends State<selamatdatang> {
                                                 labelText: "Nama Belakang",
                                               )),
                                               const SizedBox(
-                                                height: 20,
+                                                height: 10,
                                               ),
 
                                               TextField(
@@ -159,11 +159,11 @@ class _selamatdatangState extends State<selamatdatang> {
                                                   borderRadius:
                                                       BorderRadius.circular(10),
                                                 ),
-                                                hintText: "Fullname",
-                                                labelText: "Fullname",
+                                                hintText: "Username",
+                                                labelText: "Username",
                                               )),
                                               const SizedBox(
-                                                height: 20,
+                                                height: 10,
                                               ),
 
                                               TextField(
@@ -176,7 +176,33 @@ class _selamatdatangState extends State<selamatdatang> {
                                                 labelText: "Email",
                                               )),
                                               const SizedBox(
-                                                height: 20,
+                                                height: 10,
+                                              ),
+
+                                              TextField(
+                                                  decoration: InputDecoration(
+                                                border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                                hintText: "Asal Institusi",
+                                                labelText: "Asal Institusi",
+                                              )),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+
+                                              TextField(
+                                                  decoration: InputDecoration(
+                                                border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                                hintText: "Kegiatan",
+                                                labelText: "Kegiatan",
+                                              )),
+                                              const SizedBox(
+                                                height: 10,
                                               ),
 
                                               TextField(
@@ -203,7 +229,7 @@ class _selamatdatangState extends State<selamatdatang> {
                                                         }),
                                                   )),
                                               const SizedBox(
-                                                height: 20,
+                                                height: 10,
                                               ),
 
                                               TextField(
@@ -234,7 +260,7 @@ class _selamatdatangState extends State<selamatdatang> {
                                                         }),
                                                   )),
                                               const SizedBox(
-                                                height: 20,
+                                                height: 10,
                                               ),
                                               Container(
                                                   height: 60,
@@ -448,7 +474,7 @@ class _selamatdatangState extends State<selamatdatang> {
                                                           context,
                                                           MaterialPageRoute(
                                                             builder: (context) =>
-                                                                const dashboard(),
+                                                                const navigasiPage(),
                                                           ),
                                                         );
                                                       },

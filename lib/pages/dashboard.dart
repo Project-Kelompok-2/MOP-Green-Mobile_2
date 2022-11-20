@@ -34,34 +34,9 @@ class _dashboardState extends State<dashboard> {
     chartData6 = getChartData6();
     chartData7 = getChartData7();
     chartData8 = getChartData8();
-    Timer.periodic(const Duration(seconds: 1), updateDataSource);
+    Timer.periodic(const Duration(seconds: 180), updateDataSource);
     super.initState();
   }
-
-  //!Tampilan Bottom Navigasi
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
-  ];
 
   //!Body
   @override
@@ -708,32 +683,11 @@ class _dashboardState extends State<dashboard> {
           ),
         ],
       ),
-      //!Tampilan Bottom Navigasi
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: backgroundColor,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Color(0xFF10CF6F),
-        onTap: _onItemTapped,
-      ),
     );
   }
 
   //!Ini buat timer line grafik chartnya
-  int time = 19;
+  int time = 180;
   void updateDataSource(Timer timer) {
     chartData.add(LiveData(time++, (math.Random().nextInt(60) + 30)));
     chartData.removeAt(0);

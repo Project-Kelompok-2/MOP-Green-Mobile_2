@@ -11,3 +11,5 @@ import 'dart:math' as math;
 
 part 'selamatdatang_pages.dart';
 part 'dashboard.dart';
+part 'log_view.dart';
+part 'navigasi.dart';
