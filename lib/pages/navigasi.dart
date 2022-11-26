@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 part of 'pages.dart';
 
 class navigasiPage extends StatefulWidget {
@@ -12,43 +14,23 @@ class _navigasiPageState extends State<navigasiPage> {
   final screens = [
     const dashboard(),
     const logView(),
+    const userPage(),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: screens[index],
-      bottomNavigationBar: NavigationBarTheme(
-        data: NavigationBarThemeData(
-            indicatorColor: Color(0xFF6ad9a0),
-            labelTextStyle: MaterialStateProperty.all(const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-            ))),
-        child: NavigationBar(
-          labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-          height: 60,
-          backgroundColor: Colors.white,
-          selectedIndex: index,
-          onDestinationSelected: (index) => setState(() => this.index = index),
-          destinations: const [
-            NavigationDestination(
-              icon: Icon(Icons.home_outlined),
-              selectedIcon: Icon(Icons.home_filled),
-              label: 'Home',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.note_outlined),
-              selectedIcon: Icon(Icons.note),
-              label: 'Log view',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.person_outlined),
-              selectedIcon: Icon(Icons.person),
-              label: 'User',
-            ),
+      bottomNavigationBar: ConvexAppBar(
+          backgroundColor: button2Color,
+          items: const [
+            TabItem(icon: Icons.home, title: 'Dashboard'),
+            TabItem(icon: Icons.note, title: 'Log View'),
+            TabItem(icon: Icons.person, title: 'User'),
           ],
-        ),
-      ),
+          // initialActiveIndex: 0,
+          onTap: (int i) {
+            setState(() => index = i);
+          }),
     );
   }
 }

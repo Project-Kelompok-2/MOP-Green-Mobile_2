@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 part of 'pages.dart';
 
 class dashboard extends StatefulWidget {
@@ -25,6 +27,7 @@ class _dashboardState extends State<dashboard> {
   late chart.ChartSeriesController _chartSeriesController7;
   late chart.ChartSeriesController _chartSeriesController8;
 
+  @override
   void initState() {
     chartData = getChartData();
     chartData2 = getChartData2();
@@ -34,7 +37,7 @@ class _dashboardState extends State<dashboard> {
     chartData6 = getChartData6();
     chartData7 = getChartData7();
     chartData8 = getChartData8();
-    Timer.periodic(const Duration(seconds: 180), updateDataSource);
+    Timer.periodic(const Duration(minutes: 3), updateDataSource);
     super.initState();
   }
 
@@ -58,20 +61,22 @@ class _dashboardState extends State<dashboard> {
                   colors: [Color(0xFF16D682), Color(0xFF05BE5E)]),
             ),
             child: Container(
-              margin: EdgeInsets.all(10),
+              margin: const EdgeInsets.all(10),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    height: 20,
+                  const SizedBox(
+                    height: 30,
                   ),
                   Text(
-                    'Today',
+                    'Room 1',
                     style: selamatdatangTextStyle.copyWith(
-                        fontSize: 20, fontWeight: FontWeight.bold),
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  SizedBox(
-                    height: 20,
+                  const SizedBox(
+                    height: 10,
                   ),
                   //!Grafik Suhu
                   Row(
@@ -79,96 +84,93 @@ class _dashboardState extends State<dashboard> {
                       Expanded(
                         child: Column(
                           children: [
-                            Container(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    width: 121,
-                                    height: 121,
-                                    child: SfRadialGauge(
-                                      axes: <RadialAxis>[
-                                        RadialAxis(
-                                          axisLineStyle: AxisLineStyle(
-                                            thickness: 0.2,
-                                            thicknessUnit: GaugeSizeUnit.factor,
-                                            cornerStyle: CornerStyle.bothCurve,
-                                          ),
-                                          showTicks: false,
-                                          showLabels: false,
-                                          onAxisTapped: (value) {},
-                                          pointers: <GaugePointer>[
-                                            RangePointer(
-                                              color: Colors.white,
-                                              value: 60,
-                                              onValueChanged: (value) {},
-                                              cornerStyle:
-                                                  CornerStyle.bothCurve,
-                                              onValueChangeEnd: (value) {},
-                                              onValueChangeStart: (value) {},
-                                              enableDragging: true,
-                                              width: 0.2,
-                                              sizeUnit: GaugeSizeUnit.factor,
-                                            ),
-                                          ],
-                                          annotations: <GaugeAnnotation>[
-                                            GaugeAnnotation(
-                                              widget: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    "65.0",
-                                                    style: wikwokTextStyle,
-                                                  ),
-                                                  Text(
-                                                    "suhu",
-                                                    style: meTextStyle,
-                                                  )
-                                                ],
-                                              ),
-                                              positionFactor: 0.13,
-                                              angle: 0.5,
-                                            ),
-                                          ],
+                            Column(
+                              children: [
+                                SizedBox(
+                                  width: 121,
+                                  height: 121,
+                                  child: SfRadialGauge(
+                                    axes: <RadialAxis>[
+                                      RadialAxis(
+                                        axisLineStyle: const AxisLineStyle(
+                                          thickness: 0.2,
+                                          thicknessUnit: GaugeSizeUnit.factor,
+                                          cornerStyle: CornerStyle.bothCurve,
                                         ),
-                                      ],
-                                    ),
+                                        showTicks: false,
+                                        showLabels: false,
+                                        onAxisTapped: (value) {},
+                                        pointers: <GaugePointer>[
+                                          RangePointer(
+                                            color: Colors.white,
+                                            value: 60,
+                                            onValueChanged: (value) {},
+                                            cornerStyle: CornerStyle.bothCurve,
+                                            onValueChangeEnd: (value) {},
+                                            onValueChangeStart: (value) {},
+                                            enableDragging: true,
+                                            width: 0.2,
+                                            sizeUnit: GaugeSizeUnit.factor,
+                                          ),
+                                        ],
+                                        annotations: <GaugeAnnotation>[
+                                          GaugeAnnotation(
+                                            widget: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  "65.0",
+                                                  style: wikwokTextStyle,
+                                                ),
+                                                Text(
+                                                  "suhu",
+                                                  style: meTextStyle,
+                                                )
+                                              ],
+                                            ),
+                                            positionFactor: 0.13,
+                                            angle: 0.5,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
                                   ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    "Rata-rata Suhu",
-                                    style: meTextStyle,
-                                  ),
-                                  Text(
-                                    "25",
-                                    style: wikwokTextStyle,
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    "Suhu Tertinggi",
-                                    style: meTextStyle,
-                                  ),
-                                  Text(
-                                    "25",
-                                    style: wikwokTextStyle,
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    "Suhu Terendah",
-                                    style: meTextStyle,
-                                  ),
-                                  Text(
-                                    "25",
-                                    style: wikwokTextStyle,
-                                  ),
-                                ],
-                              ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  "Rata-rata Suhu",
+                                  style: meTextStyle,
+                                ),
+                                Text(
+                                  "25",
+                                  style: wikwokTextStyle,
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  "Suhu Tertinggi",
+                                  style: meTextStyle,
+                                ),
+                                Text(
+                                  "25",
+                                  style: wikwokTextStyle,
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  "Suhu Terendah",
+                                  style: meTextStyle,
+                                ),
+                                Text(
+                                  "25",
+                                  style: wikwokTextStyle,
+                                ),
+                              ],
                             ),
                           ],
                         ),
@@ -177,97 +179,94 @@ class _dashboardState extends State<dashboard> {
                       Expanded(
                         child: Column(
                           children: [
-                            Container(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    width: 121,
-                                    height: 121,
-                                    child: SfRadialGauge(
-                                      axes: <RadialAxis>[
-                                        RadialAxis(
-                                          axisLineStyle: AxisLineStyle(
-                                            thickness: 0.2,
-                                            thicknessUnit: GaugeSizeUnit.factor,
-                                            cornerStyle: CornerStyle.bothCurve,
-                                          ),
-                                          showTicks: false,
-                                          showLabels: false,
-                                          onAxisTapped: (value) {},
-                                          pointers: <GaugePointer>[
-                                            RangePointer(
-                                              color: Colors.white,
-                                              value: 60,
-                                              onValueChanged: (value) {},
-                                              cornerStyle:
-                                                  CornerStyle.bothCurve,
-                                              onValueChangeEnd: (value) {},
-                                              onValueChangeStart: (value) {},
-                                              enableDragging: true,
-                                              width: 0.2,
-                                              sizeUnit: GaugeSizeUnit.factor,
-                                            ),
-                                          ],
-                                          annotations: <GaugeAnnotation>[
-                                            GaugeAnnotation(
-                                              widget: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    "65.0",
-                                                    style: wikwokTextStyle,
-                                                  ),
-                                                  Text(
-                                                    "Kelembapan",
-                                                    style: meTextStyle.copyWith(
-                                                        fontSize: 12),
-                                                  ),
-                                                ],
-                                              ),
-                                              positionFactor: 0.13,
-                                              angle: 0.5,
-                                            ),
-                                          ],
+                            Column(
+                              children: [
+                                SizedBox(
+                                  width: 121,
+                                  height: 121,
+                                  child: SfRadialGauge(
+                                    axes: <RadialAxis>[
+                                      RadialAxis(
+                                        axisLineStyle: const AxisLineStyle(
+                                          thickness: 0.2,
+                                          thicknessUnit: GaugeSizeUnit.factor,
+                                          cornerStyle: CornerStyle.bothCurve,
                                         ),
-                                      ],
-                                    ),
+                                        showTicks: false,
+                                        showLabels: false,
+                                        onAxisTapped: (value) {},
+                                        pointers: <GaugePointer>[
+                                          RangePointer(
+                                            color: Colors.white,
+                                            value: 60,
+                                            onValueChanged: (value) {},
+                                            cornerStyle: CornerStyle.bothCurve,
+                                            onValueChangeEnd: (value) {},
+                                            onValueChangeStart: (value) {},
+                                            enableDragging: true,
+                                            width: 0.2,
+                                            sizeUnit: GaugeSizeUnit.factor,
+                                          ),
+                                        ],
+                                        annotations: <GaugeAnnotation>[
+                                          GaugeAnnotation(
+                                            widget: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  "65.0",
+                                                  style: wikwokTextStyle,
+                                                ),
+                                                Text(
+                                                  "Kelembapan",
+                                                  style: meTextStyle.copyWith(
+                                                      fontSize: 12),
+                                                ),
+                                              ],
+                                            ),
+                                            positionFactor: 0.13,
+                                            angle: 0.5,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
                                   ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    "Rata-rata Kelembapan",
-                                    style: meTextStyle,
-                                  ),
-                                  Text(
-                                    "25",
-                                    style: wikwokTextStyle,
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    "Kelembapan Tertinggi",
-                                    style: meTextStyle,
-                                  ),
-                                  Text(
-                                    "25",
-                                    style: wikwokTextStyle,
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    "Kelembapan Terendah",
-                                    style: meTextStyle,
-                                  ),
-                                  Text(
-                                    "25",
-                                    style: wikwokTextStyle,
-                                  ),
-                                ],
-                              ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  "Rata-rata Kelembapan",
+                                  style: meTextStyle,
+                                ),
+                                Text(
+                                  "25",
+                                  style: wikwokTextStyle,
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  "Kelembapan Tertinggi",
+                                  style: meTextStyle,
+                                ),
+                                Text(
+                                  "25",
+                                  style: wikwokTextStyle,
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  "Kelembapan Terendah",
+                                  style: meTextStyle,
+                                ),
+                                Text(
+                                  "25",
+                                  style: wikwokTextStyle,
+                                ),
+                              ],
                             ),
                           ],
                         ),
@@ -285,7 +284,7 @@ class _dashboardState extends State<dashboard> {
           Expanded(
             child: SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 3),
+                padding: const EdgeInsets.symmetric(horizontal: 3),
                 child: Column(
                   children: [
                     //!Chart Room 1
@@ -307,9 +306,7 @@ class _dashboardState extends State<dashboard> {
                                       color: Colors.black,
                                     ),
                                   ),
-                                  const SizedBox(
-                                    width: 150,
-                                  ),
+                                  const Spacer(),
                                   Image.asset('assets/images/divider.png'),
                                   const SizedBox(
                                     width: 10,
@@ -382,7 +379,7 @@ class _dashboardState extends State<dashboard> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     //*Chart Room 2
@@ -404,9 +401,7 @@ class _dashboardState extends State<dashboard> {
                                       color: Colors.black,
                                     ),
                                   ),
-                                  const SizedBox(
-                                    width: 150,
-                                  ),
+                                  const Spacer(),
                                   Image.asset('assets/images/divider.png'),
                                   const SizedBox(
                                     width: 10,
@@ -479,7 +474,7 @@ class _dashboardState extends State<dashboard> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     //*Chart Room 3
@@ -501,9 +496,7 @@ class _dashboardState extends State<dashboard> {
                                       color: Colors.black,
                                     ),
                                   ),
-                                  const SizedBox(
-                                    width: 150,
-                                  ),
+                                  const Spacer(),
                                   Image.asset('assets/images/divider.png'),
                                   const SizedBox(
                                     width: 10,
@@ -576,7 +569,7 @@ class _dashboardState extends State<dashboard> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     //*chart room 4
@@ -598,9 +591,7 @@ class _dashboardState extends State<dashboard> {
                                       color: Colors.black,
                                     ),
                                   ),
-                                  const SizedBox(
-                                    width: 150,
-                                  ),
+                                  const Spacer(),
                                   Image.asset('assets/images/divider.png'),
                                   const SizedBox(
                                     width: 10,
@@ -673,7 +664,7 @@ class _dashboardState extends State<dashboard> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     )
                   ],
@@ -687,7 +678,7 @@ class _dashboardState extends State<dashboard> {
   }
 
   //!Ini buat timer line grafik chartnya
-  int time = 180;
+  int time = 19;
   void updateDataSource(Timer timer) {
     chartData.add(LiveData(time++, (math.Random().nextInt(60) + 30)));
     chartData.removeAt(0);
