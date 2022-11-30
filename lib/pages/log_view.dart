@@ -3,13 +3,86 @@
 part of 'pages.dart';
 
 class logView extends StatefulWidget {
-  const logView({Key? key}) : super(key: key);
+  const logView({super.key, this.restorationId});
+
+  final String? restorationId;
 
   @override
   State<logView> createState() => _logViewState();
 }
 
-class _logViewState extends State<logView> {
+class _logViewState extends State<logView> with RestorationMixin {
+  @override
+  String? get restorationId => widget.restorationId;
+
+  final RestorableDateTimeN _startDate = RestorableDateTimeN(DateTime.now());
+  final RestorableDateTimeN _endDate = RestorableDateTimeN(DateTime.now());
+  late final RestorableRouteFuture<DateTimeRange?> _rangePicker =
+      RestorableRouteFuture<DateTimeRange?>(
+    onComplete: _selectDateRange,
+    onPresent: (NavigatorState navigator, Object? arguments) {
+      return navigator
+          .restorablePush(_dateRangePickerRoute, arguments: <String, dynamic>{
+        'intialStartDate': _startDate.value?.millisecondsSinceEpoch,
+        'IntialEndDate': _endDate.value?.millisecondsSinceEpoch,
+      });
+    },
+  );
+
+  void _selectDateRange(DateTimeRange? newSelectedDate) {
+    if (newSelectedDate != null) {
+      setState(() {
+        _startDate.value = newSelectedDate.start;
+        _endDate.value = newSelectedDate.end;
+      });
+    }
+  }
+
+  @override
+  void restoreState(RestorationBucket? oldBucket, bool initialRestore) {
+    registerForRestoration(_startDate, 'start_date');
+    registerForRestoration(_endDate, 'end_date');
+    registerForRestoration(_rangePicker, 'date_picker_route_future');
+  }
+
+  static Route<DateTimeRange?> _dateRangePickerRoute(
+    BuildContext context,
+    Object? arguments,
+  ) {
+    return DialogRoute<DateTimeRange?>(
+      context: context,
+      builder: (BuildContext context) {
+        return DateRangePickerDialog(
+          restorationId: 'date_picker_dialog',
+          initialDateRange:
+              _initialDateTimeRange(arguments! as Map<dynamic, dynamic>),
+          firstDate: DateTime(2000),
+          lastDate: DateTime(2023),
+        );
+      },
+    );
+  }
+
+  static DateTimeRange? _initialDateTimeRange(Map<dynamic, dynamic> arguments) {
+    if (arguments['intialStartDate'] != null &&
+        arguments['intialEndDate'] != null) {
+      return DateTimeRange(
+        start: DateTime.fromMillisecondsSinceEpoch(
+            arguments['initialStartDate'] as int),
+        end: DateTime.fromMillisecondsSinceEpoch(
+            arguments['initialEndDate'] as int),
+      );
+    }
+    return null;
+  }
+
+  List<String> data = [
+    "kemarin",
+    "3 hari lalu",
+    "1 minggu lalu",
+    "1 bulan lalu",
+  ];
+
   late List<LiveData> chartData9;
   late List<LiveData> chartData10;
   late List<LiveData> chartData11;
@@ -73,8 +146,51 @@ class _logViewState extends State<logView> {
                         fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 5,
                   ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 70),
+                    child: DropdownSearch<String>(
+                      popupProps: const PopupProps.menu(
+                        showSelectedItems: true,
+                      ),
+                      items: data,
+                      dropdownDecoratorProps: const DropDownDecoratorProps(
+                        dropdownSearchDecoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                          labelText: "Pilih Data",
+                        ),
+                      ),
+                      onChanged: print,
+                      clearButtonProps: const ClearButtonProps(isVisible: true),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: TextFormField(
+                      cursorColor: Colors.white,
+                      readOnly: true,
+                      onTap: () {
+                        setState(() {
+                          _rangePicker.present();
+                        });
+                      },
+                      decoration: InputDecoration(
+                        icon: const Icon(Icons.calendar_today_rounded),
+                        labelText: 'From-To',
+                        hintText: ("${_startDate.value}-${_endDate.value}"),
+                      ),
+                    ),
+                  ),
+
+                  // RaisedButton(
+                  //   onPressed: () {
+                  //     _rangePicker.present();
+                  //   },
+                  //   color: Colors.green,
+                  //   child: const Text('Range Picker'),
+                  // )
                 ],
               ),
             ),
