@@ -153,6 +153,7 @@ class _logViewState extends State<logView> with RestorationMixin {
                     child: DropdownSearch<String>(
                       popupProps: const PopupProps.menu(
                         showSelectedItems: true,
+                        fit: FlexFit.loose,
                       ),
                       items: data,
                       dropdownDecoratorProps: const DropDownDecoratorProps(
@@ -178,19 +179,11 @@ class _logViewState extends State<logView> with RestorationMixin {
                       },
                       decoration: InputDecoration(
                         icon: const Icon(Icons.calendar_today_rounded),
-                        labelText: 'From-To',
+                        labelText: 'From - To',
                         hintText: ("${_startDate.value}-${_endDate.value}"),
                       ),
                     ),
                   ),
-
-                  // RaisedButton(
-                  //   onPressed: () {
-                  //     _rangePicker.present();
-                  //   },
-                  //   color: Colors.green,
-                  //   child: const Text('Range Picker'),
-                  // )
                 ],
               ),
             ),
