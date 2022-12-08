@@ -15,6 +15,7 @@ class _selamatdatangState extends State<selamatdatang> {
 
   @override
   Widget build(BuildContext context) {
+    final MediaQueryData mediaQuery = MediaQuery.of(context);
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: primaryColor,
@@ -67,23 +68,29 @@ class _selamatdatangState extends State<selamatdatang> {
                                 children: [
                                   //* Bagian Modal
                                   Container(
-                                      color: Colors.transparent,
+                                    color: Colors.transparent,
+                                    child: Container(
+                                      decoration: const BoxDecoration(
+                                          gradient: LinearGradient(
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight,
+                                            colors: [
+                                              Color(0xFF16D682),
+                                              Color(0xFF05BE5E)
+                                            ],
+                                          ),
+                                          borderRadius: BorderRadius.only(
+                                              topRight: Radius.circular(40),
+                                              topLeft: Radius.circular(40))),
                                       child: Container(
-                                        decoration: const BoxDecoration(
-                                            gradient: LinearGradient(
-                                              begin: Alignment.topLeft,
-                                              end: Alignment.bottomRight,
-                                              colors: [
-                                                Color(0xFF16D682),
-                                                Color(0xFF05BE5E)
-                                              ],
-                                            ),
-                                            borderRadius: BorderRadius.only(
-                                                topRight: Radius.circular(40),
-                                                topLeft: Radius.circular(40))),
-                                        child: Container(
-                                          margin: EdgeInsets.symmetric(
-                                              horizontal: defaultmargin),
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: defaultmargin),
+                                        // margin: EdgeInsets.symmetric(
+                                        //     horizontal: defaultmargin),
+                                        child: Padding(
+                                          padding: EdgeInsets.only(
+                                              bottom:
+                                                  mediaQuery.viewInsets.bottom),
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
@@ -151,19 +158,6 @@ class _selamatdatangState extends State<selamatdatang> {
                                                 ),
                                                 hintText: "Nama Belakang",
                                                 labelText: "Nama Belakang",
-                                              )),
-                                              const SizedBox(
-                                                height: 10,
-                                              ),
-
-                                              TextField(
-                                                  decoration: InputDecoration(
-                                                border: OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                ),
-                                                hintText: "Username",
-                                                labelText: "Username",
                                               )),
                                               const SizedBox(
                                                 height: 10,
@@ -265,6 +259,7 @@ class _selamatdatangState extends State<selamatdatang> {
                                               const SizedBox(
                                                 height: 10,
                                               ),
+
                                               SizedBox(
                                                   height: 60,
                                                   width: MediaQuery.of(context)
@@ -316,7 +311,9 @@ class _selamatdatangState extends State<selamatdatang> {
                                             ],
                                           ),
                                         ),
-                                      ))
+                                      ),
+                                    ),
+                                  )
                                 ],
                               );
                             });

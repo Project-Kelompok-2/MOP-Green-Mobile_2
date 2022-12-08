@@ -7,14 +7,14 @@ import 'package:syncfusion_flutter_charts/charts.dart' as chart;
 import 'dart:math' as math;
 import 'package:mop_green/shared/shared.dart';
 
-class roomChart1 extends StatefulWidget {
-  const roomChart1({Key? key}) : super(key: key);
+class room4 extends StatefulWidget {
+  const room4({Key? key}) : super(key: key);
 
   @override
-  State<roomChart1> createState() => _roomChart1State();
+  State<room4> createState() => _room4State();
 }
 
-class _roomChart1State extends State<roomChart1> {
+class _room4State extends State<room4> {
   late List<LiveData> chartData;
   late List<LiveData> chartData1;
   late chart.ChartSeriesController _chartSeriesController;
@@ -30,8 +30,8 @@ class _roomChart1State extends State<roomChart1> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
+    return Card(
+      child: Container(
         width: double.infinity,
         height: 327,
         color: Colors.white,
@@ -43,7 +43,7 @@ class _roomChart1State extends State<roomChart1> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    'Room 1',
+                    'Room 4',
                     style: meTextStyle.copyWith(
                       color: Colors.black,
                     ),
