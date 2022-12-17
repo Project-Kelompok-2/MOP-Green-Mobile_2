@@ -24,8 +24,9 @@ class mapPage extends StatelessWidget {
           },
         ),
       ),
-      body: Container(
-        child: Image.asset(''),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Image.asset('assets/images/Map Green House.png'),
       ),
     );
   }

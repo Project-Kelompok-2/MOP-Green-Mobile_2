@@ -23,7 +23,7 @@ class _room1State extends State<room1> {
   void initState() {
     chartData = getChartData();
     chartData1 = getChartData2();
-    Timer.periodic(const Duration(minutes: 3), updateDataSource);
+    Timer.periodic(const Duration(seconds: 3), updateDataSource);
     super.initState();
   }
 
@@ -42,7 +42,7 @@ class _room1State extends State<room1> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    'Room 1',
+                    'Room',
                     style: meTextStyle.copyWith(
                       color: Colors.black,
                     ),
